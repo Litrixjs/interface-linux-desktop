@@ -1,0 +1,26 @@
+# Dependências
+node_modules/
+
+# Build do renderer (Vite) e pacote do Electron
+dist/
+release/
+out/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-error.log*
+
+# Ambiente
+.env
+.env.*
+!.env.example
+
+# SO
+.DS_Store
+Thumbs.db
+
+# Editor
+.idea/
+.vscode/
+*.swp

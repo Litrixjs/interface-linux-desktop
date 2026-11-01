@@ -1,0 +1,257 @@
+:root{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}
+html,body,#root{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:inherit;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+button,input{font:inherit}
+button{cursor:default}
+
+/* Desktop: macOS-inspired glass, depth and restrained gradients. */
+.desktop{width:100%;height:100%;position:relative;overflow:hidden;color:#f5f7fb;background:
+ radial-gradient(ellipse at 12% 12%,rgba(44,103,255,.70) 0,transparent 36%),
+ radial-gradient(ellipse at 86% 18%,rgba(111,76,255,.58) 0,transparent 34%),
+ radial-gradient(ellipse at 72% 88%,rgba(220,70,180,.45) 0,transparent 38%),
+ linear-gradient(135deg,#152d63 0%,#2b236c 48%,#17112f 100%)}
+.desktop:before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(120deg,rgba(255,255,255,.05),transparent 38%,rgba(255,255,255,.025));z-index:0}
+.desktop.light{color:#182033;background:
+ radial-gradient(ellipse at 10% 10%,#b9d9ff 0,transparent 38%),
+ radial-gradient(ellipse at 88% 20%,#d9c6ff 0,transparent 36%),
+ radial-gradient(ellipse at 70% 90%,#ffd4eb 0,transparent 40%),linear-gradient(135deg,#dbeafe,#ede9fe 52%,#fdf2f8)}
+
+/* Top menu bar */
+.menubar{position:absolute;top:0;left:0;right:0;height:34px;display:flex;justify-content:space-between;align-items:center;padding:0 12px;background:rgba(20,24,38,.58);border-bottom:1px solid rgba(255,255,255,.08);backdrop-filter:blur(24px) saturate(160%);-webkit-backdrop-filter:blur(24px) saturate(160%);z-index:9000;font-size:13px;letter-spacing:.01em;box-shadow:0 1px 12px rgba(0,0,0,.12)}
+.light .menubar{background:rgba(255,255,255,.58);color:#182033;border-bottom-color:rgba(0,0,0,.08)}
+.menubar button,.menubar span{border:0;background:transparent;color:inherit;padding:5px 7px;border-radius:7px}
+.menubar button:hover,.menubar span:hover{background:rgba(255,255,255,.09)}
+.brand,.right{display:flex;align-items:center;gap:2px}.brand b{font-weight:650;margin:0 4px 0 2px}.right{gap:3px}.right>span{opacity:.9;margin-left:4px}
+
+/* Desktop icons */
+.desktopicons{position:absolute;top:55px;left:18px;display:grid;gap:18px;z-index:20}
+.desktopicons button{border:0;background:transparent;color:inherit;display:grid;gap:6px;justify-items:center;width:82px;padding:5px;border-radius:12px;text-shadow:0 2px 8px rgba(0,0,0,.45)}
+.desktopicons button:hover{background:rgba(255,255,255,.10)}
+.desktopicons svg{width:43px;height:43px;stroke-width:1.7;filter:drop-shadow(0 2px 5px rgba(0,0,0,.35))}
+.desktopicons span{font-size:13px;font-weight:520}
+
+/* Windows */
+.win{position:absolute;display:flex;flex-direction:column;overflow:hidden;background:rgba(247,248,252,.88);color:#151922;border:1px solid rgba(0,0,0,.18);border-radius:13px;box-shadow:0 26px 80px rgba(0,0,0,.34),0 2px 10px rgba(0,0,0,.12);backdrop-filter:blur(24px) saturate(140%);-webkit-backdrop-filter:blur(24px) saturate(140%)}
+.dark .win{background:rgba(22,27,39,.91);color:#f5f7fb;border-color:rgba(255,255,255,.13)}
+.win.focused{box-shadow:0 30px 100px rgba(0,0,0,.44),0 0 0 1px rgba(255,255,255,.04)}
+.win.elsewhere{display:none}
+.win header{height:39px;flex:none;display:flex;align-items:center;justify-content:center;background:rgba(245,246,250,.76);border-bottom:1px solid rgba(0,0,0,.08);position:relative;cursor:default;user-select:none;touch-action:none;backdrop-filter:blur(18px)}
+.dark .win header{background:rgba(30,36,51,.82);border-bottom-color:rgba(255,255,255,.07)}
+.win header>span{display:flex;gap:6px;align-items:center;font-size:13px;font-weight:560;letter-spacing:.01em;opacity:.94}
+.traffic{position:absolute;left:11px;display:flex;gap:7px}
+.traffic button{width:13px;height:13px;border-radius:50%;border:0;padding:0;display:grid;place-items:center;color:rgba(0,0,0,.65);box-shadow:inset 0 0 0 1px rgba(0,0,0,.13)}
+.traffic button:nth-child(1){background:#ff5f57}.traffic button:nth-child(2){background:#febc2e}.traffic button:nth-child(3){background:#28c840}
+.traffic button svg{opacity:0;transition:opacity .12s}.traffic:hover button svg{opacity:.8}
+.winbody{min-height:0;flex:1;overflow:hidden}.resize{position:absolute;right:0;bottom:0;width:18px;height:18px;cursor:nwse-resize}
+
+/* Dock */
+.dock{position:absolute;z-index:8000;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:8px;padding:8px 9px;border:1px solid rgba(255,255,255,.24);border-radius:21px;background:rgba(36,42,57,.46);backdrop-filter:blur(30px) saturate(170%);-webkit-backdrop-filter:blur(30px) saturate(170%);box-shadow:0 18px 45px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.12)}
+.light .dock{background:rgba(245,247,252,.50);border-color:rgba(255,255,255,.55)}
+.dock button{position:relative;border:0;width:49px;height:49px;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,.07));color:#fff;display:grid;place-items:center;transition:transform .16s cubic-bezier(.2,.8,.2,1),filter .16s}
+.dock button:hover{transform:translateY(-9px) scale(1.12);filter:brightness(1.12)}
+.dock button:nth-child(1){background:linear-gradient(145deg,#5b8cff,#2563eb)}
+.dock button:nth-child(2){background:linear-gradient(145deg,#3a3d48,#0b0d12)}
+.dock button:nth-child(3){background:linear-gradient(145deg,#ef9b45,#c66a19)}
+.dock button:nth-child(4){background:linear-gradient(145deg,#777f91,#394255)}
+.dock button:nth-child(5){background:linear-gradient(145deg,#26c6a5,#087f78)}
+.dock button:nth-child(6){background:linear-gradient(145deg,#69a7ff,#2563eb)}
+.dock button svg{filter:drop-shadow(0 1px 2px rgba(0,0,0,.28));stroke-width:1.9}
+.dock small{position:absolute;bottom:1px;font-size:9px;color:#fff}
+
+/* Workspaces */
+.workspacebar{position:absolute;bottom:8px;left:9px;display:flex;gap:3px;align-items:center;z-index:8001;background:rgba(22,28,42,.48);padding:4px 6px;border:1px solid rgba(255,255,255,.11);border-radius:10px;backdrop-filter:blur(18px)}
+.workspacebar button{border:0;background:rgba(255,255,255,.08);color:#fff;border-radius:6px;width:25px;height:22px}.workspacebar button.active{background:#3478f6;box-shadow:0 1px 5px rgba(0,0,0,.22)}.workspacebar span{font-size:10px;color:rgba(255,255,255,.62);margin-left:4px}
+.light .workspacebar{background:rgba(255,255,255,.52);color:#182033}.light .workspacebar button{color:#182033}
+
+/* Nautilus */
+.nautilus{display:flex;height:100%}.nautilus aside{width:180px;background:rgba(238,241,248,.58);border-right:1px solid rgba(0,0,0,.08);padding:10px;backdrop-filter:blur(18px)}
+.dark .nautilus aside{background:rgba(15,20,31,.52);border-right-color:rgba(255,255,255,.07)}
+.nautilus aside button{display:flex;align-items:center;gap:9px;width:100%;padding:9px 10px;border:0;border-radius:8px;background:transparent;color:inherit;text-align:left}.nautilus aside button:hover{background:rgba(70,125,240,.12)}.nautilus aside button:first-child{font-weight:600}
+.nautilus main{min-width:0;flex:1}.toolbar{height:43px;display:flex;align-items:center;gap:4px;padding:5px 9px;border-bottom:1px solid rgba(0,0,0,.08);background:rgba(255,255,255,.10)}
+.toolbar button{border:0;background:transparent;color:inherit;padding:5px;border-radius:7px}.toolbar button:hover{background:rgba(127,127,127,.13)}.toolbar span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-left:5px;font-size:12px;opacity:.78}
+.files{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;padding:14px;overflow:auto;height:calc(100% - 43px)}
+.files button{border:0;background:transparent;color:inherit;border-radius:10px;padding:10px 7px;display:grid;justify-items:center;gap:5px}.files button:hover,.files button.selected{background:rgba(64,124,241,.15)}
+.fileicon svg{width:44px;height:44px;stroke-width:1.55;filter:drop-shadow(0 2px 3px rgba(0,0,0,.18))}.files b{font-size:12px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:550}.files small{font-size:10px;opacity:.55}
+
+/* Terminal */
+.terminal{height:100%;background:#080a0f}
+
+/* Launcher */
+.overlay{position:absolute;inset:34px 0 0;z-index:10000;background:rgba(0,0,0,.28);display:flex;justify-content:center;padding-top:74px;backdrop-filter:blur(4px)}
+.launcher{width:min(720px,90vw);background:rgba(28,32,45,.90);border:1px solid rgba(255,255,255,.16);border-radius:18px;box-shadow:0 32px 100px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.08);overflow:hidden;backdrop-filter:blur(30px) saturate(150%)}
+.search{display:flex;gap:10px;align-items:center;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.10)}.search input{flex:1;background:transparent;border:0;outline:0;color:#fff;font-size:18px}.search kbd{font-size:11px;background:rgba(255,255,255,.10);padding:3px 6px;border-radius:5px}
+.launchgrid{display:grid;grid-template-columns:repeat(4,1fr);padding:15px;gap:10px}.launchgrid button{border:0;background:rgba(255,255,255,.055);color:#fff;border-radius:12px;padding:18px;display:grid;gap:8px;justify-items:center}.launchgrid button:hover{background:rgba(56,116,238,.65)}.launchgrid svg{width:30px;height:30px;stroke-width:1.7}
+.results{border-top:1px solid rgba(255,255,255,.10);max-height:280px;overflow:auto;padding:8px}.results button{width:100%;display:grid;grid-template-columns:auto 1fr;gap:3px 10px;padding:8px;border:0;background:transparent;color:#fff;text-align:left;border-radius:7px}.results button:hover{background:rgba(255,255,255,.08)}.results small{grid-column:2;opacity:.5;font-size:10px}
+
+/* Store */
+
+.chips{display:flex;gap:6px;margin:18px 0}.chips button,.settings button{border:1px solid rgba(255,255,255,.07);border-radius:9px;padding:8px 12px;background:rgba(255,255,255,.07);color:inherit;display:inline-flex;gap:7px;align-items:center}.chips button:hover,.settings button:hover{background:rgba(255,255,255,.12)}.chips .active{background:#3d82f6;color:#fff;border-color:transparent;box-shadow:0 4px 12px rgba(61,130,246,.24)}
+.appgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}.appcard{display:grid;grid-template-columns:46px 1fr auto;align-items:center;gap:10px;padding:12px;border:1px solid rgba(255,255,255,.08);border-radius:13px;background:rgba(255,255,255,.045);box-shadow:inset 0 1px 0 rgba(255,255,255,.035)}.appcard:hover{background:rgba(255,255,255,.075)}
+.appico{width:42px;height:42px;border-radius:11px;background:linear-gradient(145deg,#5f95ff,#2869e8);color:#fff;display:grid;place-items:center;box-shadow:0 4px 12px rgba(30,90,220,.22)}.appcard b,.appcard small{display:block}.appcard b{font-weight:600}.appcard small{opacity:.5;font-size:10px;overflow:hidden;text-overflow:ellipsis}.appcard button{border:0;background:#3d82f6;color:#fff;border-radius:8px;padding:6px 10px}.appcard button:hover{background:#2f72e8}
+
+/* Settings / monitor */
+.settings section{padding:16px 0;border-bottom:1px solid rgba(255,255,255,.08)}.settings h3{margin:0 0 10px;font-size:15px}.hint{color:#79a9ff}.metrics{display:grid;grid-template-columns:1fr 1fr;gap:12px}.metrics>div{padding:16px;border:1px solid rgba(255,255,255,.08);border-radius:13px;background:rgba(255,255,255,.05);display:grid;grid-template-columns:28px 1fr;gap:6px}.metrics span,.metrics pre{grid-column:2;opacity:.68;font-size:12px;white-space:pre-wrap}
+
+/* Browser */
+
+
+/* Notifications */
+.toast{position:absolute;right:18px;top:48px;z-index:12000;background:rgba(24,29,42,.88);color:#fff;border:1px solid rgba(255,255,255,.13);border-radius:13px;padding:12px 13px;display:flex;gap:10px;align-items:flex-start;box-shadow:0 18px 55px rgba(0,0,0,.35);backdrop-filter:blur(25px);min-width:255px}.toast div{display:grid;gap:3px}.toast span{font-size:12px;opacity:.72}.toast>button{border:0;background:transparent;color:#fff}
+
+.light .win{border-color:rgba(0,0,0,.12)}.light .nautilus aside{background:rgba(247,248,252,.62)}.light .storetop input{background:rgba(255,255,255,.65);color:#182033;border-color:rgba(0,0,0,.10)}.light .appcard,.light .metrics>div{background:rgba(255,255,255,.42);border-color:rgba(0,0,0,.08)}.light .browserbar{background:rgba(255,255,255,.22)}
+
+/* ---- Correções ---- */
+/* Durante arrastar/redimensionar o iframe do Chrome não pode capturar o ponteiro */
+body.dragging{user-select:none;cursor:grabbing}
+body.dragging iframe{pointer-events:none}
+.desktop.dark{color-scheme:dark}.desktop.light{color-scheme:light}
+/* Launcher: o card esticava até o rodapé da tela (flex stretch) */
+.overlay{align-items:flex-start}
+
+/* Nautilus: botões desativados, estados de erro/vazio */
+.toolbar button:disabled{opacity:.35;pointer-events:none}.toolbar span{flex:1;min-width:0}
+.fserror,.fsempty{grid-column:1/-1;display:flex;gap:8px;align-items:center;padding:12px;border-radius:10px;font-size:13px}
+.fserror{background:rgba(255,95,87,.14);color:#ff7a72}.fsempty{justify-content:center;opacity:.55}
+
+/* Monitor: tabela do df não quebra mais; card de discos ocupa a largura toda */
+.metrics>div{min-width:0}.metrics>div:last-child{grid-column:1/-1}.metrics pre{white-space:pre;overflow:auto;margin:0}
+
+/* Chrome: página inicial local */
+
+
+/* Modo claro: contraste de botões, chips, workspaces e avisos */
+.nautilus main{position:relative}.fspreview{position:absolute;inset:43px 0 0;background:rgba(247,248,252,.97);display:flex;flex-direction:column;z-index:2}.dark .fspreview{background:rgba(22,27,39,.98)}.fphead{display:flex;align-items:center;gap:10px;padding:8px 12px;border-bottom:1px solid rgba(127,127,127,.2)}.fphead small{opacity:.55;flex:1}.fphead button{border:0;background:transparent;color:inherit;border-radius:6px;padding:4px}.fspreview pre{margin:0;padding:12px;overflow:auto;flex:1;font-size:12px;white-space:pre-wrap;word-break:break-word}.fspreview p{padding:16px;opacity:.6;font-size:13px}
+.light .hint{color:#2a62d4}.light .fserror{color:#c0261c}
+.light .chips button,.light .settings button,.light .browserbar button{background:rgba(0,0,0,.06);border-color:rgba(0,0,0,.08)}
+.light .chips button:hover,.light .settings button:hover,.light .browserbar button:hover{background:rgba(0,0,0,.11)}
+.light .chips .active{background:#3d82f6;color:#fff;border-color:transparent}
+.light .settings section{border-bottom-color:rgba(0,0,0,.08)}
+.light .browserbar input{background:rgba(255,255,255,.7);border-color:rgba(0,0,0,.1)}
+.light .workspacebar span{color:rgba(24,32,51,.65)}.light .workspacebar button{background:rgba(0,0,0,.07)}.light .workspacebar button.active{background:#3478f6;color:#fff}
+
+/* ---- Configurações (SystemSettings.jsx) ---- */
+/* O componente usava classes Tailwind (flex, rounded-xl, bg-white/5…), mas o projeto não tem Tailwind: ficava sem estilo.
+   Aqui usa só rgba(127,127,127,x)/currentColor, então funciona no tema claro e no escuro. */
+.ss{display:flex;height:100%;min-height:0}
+.ss-side{width:208px;flex:none;display:flex;flex-direction:column;gap:2px;padding:14px 10px;border-right:1px solid rgba(127,127,127,.2);background:rgba(127,127,127,.07);overflow:auto}
+.ss-brand{display:flex;align-items:center;gap:10px;padding:4px 8px 14px;font-weight:650;font-size:13px}
+.ss-brand i{width:26px;height:26px;border-radius:8px;background:#3d82f6;color:#fff;display:grid;place-items:center}
+.ss-nav{display:flex;flex-direction:column;gap:2px;flex:1}
+.ss-item{display:flex;align-items:center;gap:10px;width:100%;border:0;border-radius:9px;padding:8px 10px;background:transparent;color:inherit;text-align:left;font-size:13px;opacity:.8}
+.ss-item:hover:not(:disabled){background:rgba(127,127,127,.15);opacity:1}
+.ss-item.active{background:rgba(61,130,246,.2);opacity:1;font-weight:600}
+.ss-item.active:after{content:"";margin-left:auto;width:6px;height:6px;border-radius:50%;background:#3d82f6}
+.ss-logout{margin-top:8px;color:#ff6b62;border-top:1px solid rgba(127,127,127,.2);border-radius:0 0 9px 9px;padding-top:12px}
+.ss-logout:disabled{opacity:.45;cursor:not-allowed}
+.ss-main{flex:1;min-width:0;overflow:auto;padding:24px 26px}
+.ss-main h1{margin:0 0 4px;font-size:24px;font-weight:700;letter-spacing:-.02em}
+.ss-main h2{margin:22px 0 10px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.55;font-weight:650}
+.ss-sub{margin:0 0 4px;font-size:13px;opacity:.6}
+.ss-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.ss-head.ss-sec{align-items:center;margin-top:22px}.ss-head.ss-sec h2{margin:0}
+.ss-demo{margin:14px 0 0;padding:8px 12px;border-radius:9px;font-size:12px;background:rgba(61,130,246,.12);color:#79a9ff}
+.light .ss-demo{color:#2a62d4}
+.ss-list{display:grid;gap:8px}
+.ss-row{display:flex;align-items:center;gap:12px;padding:11px 14px;border:1px solid rgba(127,127,127,.18);border-radius:12px;background:rgba(127,127,127,.08);min-width:0;font-size:13px}
+.ss-row:hover{background:rgba(127,127,127,.13)}
+.ss-grow{flex:1;min-width:0}.ss-grow b,.ss-grow small{display:block}.ss-grow small{opacity:.55;font-size:11px;margin-top:2px}.ss-grow small svg{vertical-align:-1px}
+.ss-ico{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:rgba(61,130,246,.18);color:#5b94ff;flex:none}
+.ss-dim{opacity:.55}
+.ss-key{width:150px;flex:none;font-weight:600}.ss-val{opacity:.8;overflow-wrap:anywhere}
+.ss-pre{margin:0;font-size:11px;opacity:.75;overflow:auto;white-space:pre;max-width:100%}
+.ss-bar{height:6px;margin-top:7px;border-radius:99px;background:rgba(127,127,127,.22);overflow:hidden}.ss-bar i{display:block;height:100%;border-radius:inherit;background:#3478f6;transition:width .3s}
+.ss-empty{margin-top:30px;text-align:center;opacity:.55}
+.ss-placeholder{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:.4;gap:6px}
+.ss-btn{border:1px solid rgba(127,127,127,.25);border-radius:9px;padding:7px 12px;background:rgba(127,127,127,.13);color:inherit;display:inline-flex;gap:7px;align-items:center;font-size:12px;white-space:nowrap}
+.ss-btn:hover:not(:disabled){background:rgba(127,127,127,.22)}
+.ss-btn.primary{background:#3d82f6;color:#fff;border-color:transparent}.ss-btn.primary:hover:not(:disabled){background:#2f72e8}
+.ss-btn:disabled{opacity:.45;cursor:not-allowed}
+.ss-toggle{display:flex;align-items:center;gap:10px;padding:6px 8px 6px 12px;border:1px solid rgba(127,127,127,.2);border-radius:12px;background:rgba(127,127,127,.08)}
+.ss-toggle span{font-size:11px;font-weight:700;opacity:.55}.ss-toggle span.ok{color:#2fc46a;opacity:1}
+.ss-switch{width:44px;height:24px;border-radius:12px;border:0;position:relative;padding:0;background:rgba(127,127,127,.5);transition:background .2s}
+.ss-switch:after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3);transition:transform .2s}
+.ss-switch[aria-checked=true]{background:#3d82f6}.ss-switch[aria-checked=true]:after{transform:translateX(20px)}
+.ss-choices{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ss-choice{display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px;border-radius:14px;border:1px solid rgba(127,127,127,.22);background:rgba(127,127,127,.08);color:inherit;font-size:13px;font-weight:550}
+.ss-choice:hover{background:rgba(127,127,127,.14)}.ss-choice.on{border-color:#3d82f6;background:rgba(61,130,246,.14);color:#4f8cff}
+.ss-wps{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin-top:12px}
+.ss-wp{height:96px;border-radius:13px;border:2px solid transparent;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:9px 11px;color:#fff;text-align:left;font-size:12px;font-weight:600;background-size:cover}
+.ss-wp:after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.65),transparent 60%)}
+.ss-wp span{position:relative;z-index:1;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+.ss-wp:hover{filter:brightness(1.1)}.ss-wp.on{border-color:#3d82f6;box-shadow:0 0 0 3px rgba(61,130,246,.3)}
+
+/* Papéis de parede (usados no desktop e nas miniaturas). 'padrao' = gradiente do tema (sem classe no desktop). */
+.wp-padrao{--wp:linear-gradient(135deg,#152d63 0%,#2b236c 48%,#17112f 100%)}
+.wp-azul-laranja{--wp:radial-gradient(ellipse at 14% 22%,rgba(255,140,50,.85) 0,transparent 46%),radial-gradient(ellipse at 88% 82%,rgba(40,120,255,.85) 0,transparent 52%),linear-gradient(135deg,#0f1c4d,#3a1d5e 55%,#7a2e2e)}
+.wp-ondas{--wp:repeating-radial-gradient(circle at 50% 135%,rgba(120,200,255,.30) 0 22px,transparent 22px 46px),linear-gradient(160deg,#0a2a52,#0f6a8b 55%,#12385c)}
+.wp-montanha{--wp:linear-gradient(158deg,transparent 56%,#1d2740 56.2%),linear-gradient(206deg,transparent 60%,#121a2e 60.2%),linear-gradient(180deg,#2b3a67 0%,#c06c84 40%,#f8b26a 70%,#0d1220 100%)}
+.wp-minimalista{--wp:linear-gradient(135deg,#0b0d12,#1a1f2b)}
+.desktop[class*="wp-"],.ss-wp{background:var(--wp)}
+.desktop[class*="wp-"] .desktopicons{color:#f5f7fb} /* ícones legíveis mesmo com tema claro + papel de parede escuro */
+
+/* ---- Configurações reais (0.0.2.0): Wi-Fi, Rede, Bluetooth, Monitores, Som, Energia ---- */
+.ss-badge{font-style:normal;font-size:10px;font-weight:650;margin-left:8px;padding:2px 7px;border-radius:99px;background:rgba(47,196,106,.18);color:#2fc46a;vertical-align:1px}
+.ss-err{background:rgba(255,95,87,.14);color:#ff7a72}.light .ss-err{color:#c0261c}
+.ss-okmsg{background:rgba(47,196,106,.14);color:#2fc46a}.light .ss-okmsg{color:#1d8a4a}
+.ss-demo svg{vertical-align:-2px}
+.ss-input,.ss-select{border:1px solid rgba(127,127,127,.3);border-radius:9px;padding:8px 10px;background:rgba(127,127,127,.12);color:inherit;font-size:13px;outline:0;min-width:0}
+.ss-input{flex:1}.ss-input:focus,.ss-select:focus{border-color:#3d82f6;box-shadow:0 0 0 3px rgba(61,130,246,.16)}
+.ss-select option{background:#1b2030;color:#f5f7fb}.light .ss-select option{background:#fff;color:#182033}
+.ss-sub-row{margin-top:6px;margin-left:24px;gap:8px}
+.ss-col{flex-direction:column;align-items:stretch;gap:12px}.ss-line{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.ss-field{display:flex;flex-direction:column;gap:4px;font-size:11px;opacity:.85}
+.ss-banner{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.ss-range{accent-color:#3d82f6;height:6px;cursor:pointer}.ss-pct{width:44px;text-align:right;font-variant-numeric:tabular-nums}
+.ss-pick{width:100%;text-align:left;color:inherit;font:inherit}.ss-pick:not(:disabled){cursor:pointer}.ss-pick.on{border-color:#3d82f6;background:rgba(61,130,246,.14)}
+.ss-three{grid-template-columns:repeat(3,1fr)}.ss-choice:disabled{opacity:.4;cursor:not-allowed}
+.ss-main .ss-placeholder{min-height:260px}.ss-placeholder p{max-width:380px;text-align:center;font-size:13px}
+@media (max-width:640px){.ss-side{width:64px}.ss-brand,.ss-item span{display:none}.ss-three{grid-template-columns:1fr}}
+
+/* ---- Activities (0.0.2.2): visão de aplicativos estilo GNOME ---- */
+.activities{position:absolute;inset:34px 0 0;z-index:7500;display:flex;flex-direction:column;align-items:center;padding:34px 4vw 130px;overflow:auto;color:#fff;
+  background:rgba(8,12,26,.55);backdrop-filter:blur(30px) saturate(1.3);-webkit-backdrop-filter:blur(30px) saturate(1.3);animation:actin .18s ease-out}
+@keyframes actin{from{opacity:0;transform:scale(1.025)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.activities{animation:none}}
+.act-search{display:flex;align-items:center;gap:10px;width:min(560px,92%);padding:11px 18px;border-radius:99px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.24);margin-bottom:36px;flex-shrink:0}
+.act-search:focus-within{background:rgba(255,255,255,.2);border-color:rgba(120,170,255,.8);box-shadow:0 0 0 3px rgba(61,130,246,.28)}
+.act-search input{flex:1;background:transparent;border:0;outline:0;color:#fff;font-size:17px;min-width:0}.act-search input::placeholder{color:rgba(255,255,255,.6)}
+.act-search kbd{font-size:11px;background:rgba(255,255,255,.14);padding:3px 7px;border-radius:5px}
+.act-grid{width:min(1080px,100%);display:grid;grid-template-columns:repeat(auto-fill,minmax(116px,1fr));gap:14px 8px}
+.act-app{border:0;background:transparent;color:#fff;display:grid;justify-items:center;align-content:start;gap:8px;padding:12px 6px;border-radius:16px;font:inherit;font-size:12px;text-align:center;cursor:pointer}
+.act-app:hover,.act-app:focus-visible{background:rgba(255,255,255,.15);outline:0}
+.act-ico{width:68px;height:68px;border-radius:17px;display:grid;place-items:center;background:rgba(255,255,255,.13);box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.act-ico img{width:100%;height:100%;object-fit:contain;padding:8px}
+.act-name{max-width:100%;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;line-height:1.25}
+.act-hint{opacity:.7;margin:26px 0;font-size:14px}
+.act-files{width:min(720px,100%);margin-top:28px;background:rgba(255,255,255,.09);border-radius:16px;padding:10px;max-height:300px;overflow:auto}
+.act-files h3{margin:4px 8px 8px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;opacity:.65;font-weight:600}
+.act-files button{width:100%;display:grid;grid-template-columns:auto 1fr;gap:2px 10px;padding:8px;border:0;background:transparent;color:#fff;text-align:left;border-radius:8px;font:inherit;cursor:pointer}
+.act-files button:hover,.act-files button:focus-visible{background:rgba(255,255,255,.12);outline:0}.act-files small{grid-column:2;opacity:.55;font-size:10px}
+/* Dock dinâmica */
+.dock .sep{width:1px;align-self:stretch;margin:6px 1px;background:rgba(255,255,255,.3)}
+.dock button.ext{background:rgba(255,255,255,.16)}.dock button.ext img{width:36px;height:36px;object-fit:contain;filter:drop-shadow(0 1px 2px rgba(0,0,0,.35))}
+
+/* ---- 0.0.2.3: animações de janela, estados da Dock, painel do navegador ---- */
+.win{transform-origin:center;transition:opacity .2s ease,transform .24s cubic-bezier(.4,0,.2,1),left .2s ease,top .2s ease,width .2s ease,height .2s ease,visibility 0s;animation:winin .18s ease-out}
+@keyframes winin{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+body.dragging .win{transition:none}
+/* minimizada: encolhe em direção ao ícone dela na Dock (--min-x/--min-y são calculados em minimizeWin) e some */
+.win.min{opacity:0;visibility:hidden;pointer-events:none;transform:translate(var(--min-x,0px),var(--min-y,70px)) scale(.12);transition:opacity .2s ease,transform .24s cubic-bezier(.4,0,.2,1),visibility 0s .24s}
+@media (prefers-reduced-motion:reduce){.win,.win.min{transition:none;animation:none}}
+.dock button.minimized{opacity:.72}.dock button.minimized small{opacity:.7}
+.dock button.focused{box-shadow:0 0 0 2px rgba(255,255,255,.6),0 4px 14px rgba(0,0,0,.3)}
+/* ---- 0.0.2.4: Shell/Launcher — apps de sistema nativos ---- */
+.monitor{height:100%;overflow:auto;padding:22px}.monitor h2{margin:0 0 5px;font-weight:680;letter-spacing:-.02em}
+.dock button.sys{background:rgba(255,255,255,.16)}
+.dock button.sys img{width:38px;height:38px;object-fit:contain;filter:drop-shadow(0 1px 2px rgba(0,0,0,.35))}
+.dock button.sys.missing{opacity:.55;filter:grayscale(.7)}
+
+/* Configurações da própria Interface — Opção 1: HTML/CSS/JS + backend JSON */
+.ss-panel-note{margin:18px 0;padding:12px 14px;border:1px solid rgba(61,130,246,.2);border-radius:12px;background:rgba(61,130,246,.08);font-size:12px;line-height:1.5;opacity:.85}
+.ss-settings-list{display:grid;gap:9px;margin-top:14px}
+.ss-setting{display:flex;align-items:center;gap:16px;padding:14px 16px;border:1px solid rgba(127,127,127,.18);border-radius:13px;background:rgba(127,127,127,.08)}
+.ss-setting:hover{background:rgba(127,127,127,.12)}
+.ss-setting .ss-grow b{font-size:13px}.ss-setting .ss-grow small{max-width:620px}
+.no-animations *, .no-animations *::before, .no-animations *::after{animation-duration:0s!important;animation-delay:0s!important;transition-duration:0s!important;scroll-behavior:auto!important}
+.no-effects .toast,.no-effects .activities,.no-effects .window{backdrop-filter:none!important;box-shadow:none!important}
